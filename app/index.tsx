@@ -1,6 +1,7 @@
-import { Text, View, StyleSheet, Image } from "react-native";
+import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Slider from "@react-native-community/slider";
+import BottomMenu from "@/app/menubottom";
 
 const assetsPath:string = "../assets/";
 
@@ -58,6 +59,12 @@ export default function Index() {
           <Image source = { require(assetsPath + "icons/max-volume-icon.png") }/>
         </View>
 
+        <TouchableOpacity onPress = { () => console.log("pressionado") } style = { styles.touchableOpacity }>
+          <Text>VER A LETRA</Text>
+        </TouchableOpacity>
+
+        <BottomMenu />
+
       </SafeAreaView>
     </SafeAreaProvider>
     
@@ -83,9 +90,7 @@ const styles = StyleSheet.create({
   },
 
   slider: {
-    width: 242,
-    //boxShadow: "0px 4px 4px #000000",
-    
+    width: 242,    
   },
 
   imageContainer: {
@@ -114,6 +119,16 @@ const styles = StyleSheet.create({
     flexDirection: "row",  
     alignItems: "center",
     gap: 5,
+  },
+
+  touchableOpacity: {
+    backgroundColor: "#5C83D2",
+    boxShadow: "0px 4px 4px #171C27",
+    paddingHorizontal: 23,
+    paddingVertical: 10,
+    borderRadius: 35,
+    color: "#FFF",
+    fontWeight: "bold",
   },
 
 });

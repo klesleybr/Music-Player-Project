@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { View, StyleSheet,Text, SafeAreaView, FlatList } from "react-native";
+import { View, StyleSheet,Text, SafeAreaView, FlatList, ScrollView } from "react-native";
 import * as MediaLibrary from "expo-media-library";
 import type { PagedInfo, Asset } from "expo-media-library";
 import Music from "@/components/Music";
@@ -28,26 +28,26 @@ export default function Index() {
 
   useEffect(() => {
     getMusics();
-  });
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
      <Header/>
 
-      <View>        
-        <FlatList
-          data = { musics?.assets }
-          renderItem ={ (infoItem) => <Music  
-              mode = "local"           
-              url={ require("../../assets/icons/default-song.png") } 
-              name = {infoItem.item.filename} 
-              key = { infoItem.item.id }
-              path = { infoItem.item.uri }
-              artist = "Desconhecido(a)"              
-            />          
-          }
-        />        
-      </View>
+     <ScrollView style = {{ width: "100%", height: "100%" }}>
+      {
+        musics?.assets.map((music) => 
+          <Music 
+            mode = "local" 
+            url = { require("../../assets/icons/default-song.png") }
+            name = { music.filename }
+            key = { music.id }
+            path = { music.uri }
+            artist = "Desconhecido(a)"
+            />)
+      }
+     </ScrollView>
+      
     </SafeAreaView>
   );
 }
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#2F2A2A",
     paddingTop: "5%",    
-    paddingBottom: "30%",
+    paddingBottom: "15%",
   },
   header: {
     width: "90%",
@@ -73,3 +73,22 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
 });
+
+
+/*
+<View>        
+        <FlatList
+          data = { musics?.assets }
+          renderItem ={ (infoItem) => <Music  
+              mode = "local"           
+              url={ require("../../assets/icons/default-song.png") } 
+              name = {infoItem.item.filename} 
+              key = { infoItem.item.id }
+              path = { infoItem.item.uri }
+              artist = "Desconhecido(a)"              
+            />          
+          }
+        />        
+      </View>
+
+      */

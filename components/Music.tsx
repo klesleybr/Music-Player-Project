@@ -9,7 +9,7 @@ type Props = {
     mode?: "horizontal" | "vertical" | "grid" | "local";
     path: string;
 };
-export default function Music({ name, url, artist, mode = "horizontal" }: Props) {
+export default function Music({ name, url, artist, mode = "horizontal", path }: Props) {
     if (mode === "horizontal") {
         return <HorizontalMusicIcon name={name} url={url} />
     } else if (mode == "vertical") {
@@ -17,7 +17,7 @@ export default function Music({ name, url, artist, mode = "horizontal" }: Props)
     } else if (mode == "grid") {
         return <GridMusicIcon name={name} artist={artist} url={url} />
     } else {
-        return <LocalMusicIcon name={name} artist={artist} url={url} />
+        return <LocalMusicIcon name={name} artist={artist} url={url} path={path} />
     }
 }
 function HorizontalMusicIcon({ name, url }: { name?: string; url: ImageSourcePropType }) {
@@ -54,7 +54,7 @@ function GridMusicIcon({ name, url, artist }: { name?: string; url: ImageSourceP
 
     );
 }
-function LocalMusicIcon({ name, url, artist }: { name?: string; url: ImageSourcePropType; artist?: string }) {
+function LocalMusicIcon({ name, url, artist, path }: { name?: string; url: ImageSourcePropType; artist?: string; path?: string }) {
     const formattedName = name?.split(".");
     return (
       <View

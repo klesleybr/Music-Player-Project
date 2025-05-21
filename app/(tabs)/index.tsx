@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
-import { View, StyleSheet,Text, SafeAreaView, FlatList, ScrollView } from "react-native";
+import { View, StyleSheet,Text, SafeAreaView, FlatList, ScrollView, Button } from "react-native";
 import * as MediaLibrary from "expo-media-library";
 import type { PagedInfo, Asset } from "expo-media-library";
 import Music from "@/components/Music";
 import Header from "@/components/Header";
+
+// imports de teste
+import { Link } from "expo-router";
+// fim dos imports de teste
 
 //Primeira tela do App
 export default function Index() {
@@ -33,6 +37,8 @@ export default function Index() {
   return (
     <SafeAreaView style={styles.container}>
      <Header/>
+
+     <Link href = "./testebusca">Próximo</Link>
 
      <ScrollView style = {{ width: "100%", height: "100%" }}>
       {

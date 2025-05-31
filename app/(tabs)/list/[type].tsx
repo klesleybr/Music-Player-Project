@@ -74,8 +74,8 @@ export default function PageList() {
                     data = res.map((r: any, index: number) => ({
                         id: String(r.id ?? `${r.name}-${index}`),
                         name: r.name ?? "Sem nome",
-                        artist: r.artist ?? "Desconhecido(a)",
-                        url: r.url ?? "https://placecats.com/300/300",
+                        artist: r.artist ?? "Desconhecido(a)",                      
+                        url: r.url ?? require("../../../assets/icons/default-song.png"),
                         path: r.path ?? "",
                     }));
 
@@ -93,7 +93,7 @@ export default function PageList() {
         };
 
         fetchData();
-    }, [typedType]);
+    }, [typedType]); // sugiro que seja por items (mas dá renderização infinita)...
 
 
     return (
@@ -124,7 +124,7 @@ export default function PageList() {
                                     mode="grid"
                                     name={item.name}
                                     artist={item.artist}
-                                    url={{ uri: item.url }}
+                                    url={item.url}
                                     path={item.path}
                                 />
                             </View>

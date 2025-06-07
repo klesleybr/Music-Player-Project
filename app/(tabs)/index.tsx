@@ -75,8 +75,7 @@ export default function Index() {
               id = {infoItem.item.id}
               path = { infoItem.item.uri }
               artist = "Desconhecido(a)" 
-              colors = {colors}  
-              onPress = {() => playTrack(infoItem.item, musics?.assets as Asset[])}           
+              colors = {colors}                
             />          
           }
         />        

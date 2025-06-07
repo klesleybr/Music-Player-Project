@@ -14,8 +14,12 @@ import { useDatabase, type MusicInfo } from "@/database/useDatabase";
 import HomeSection from "@/components/HomeSection";
 import { RelativePathString, useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { useMusics } from "@/Context/musicContext";
+import { usePlayTrack } from "@/store/playerSelectors";
+import { Track } from "@/store/playerStore";
+import { Asset } from "expo-media-library";
 
-export default function Home() {
+export default function Home() {  
   const [recentPlays, setRecentPlays] = useState<MusicInfo[] | null>([]);
   const [suggestion, setSuggestion] = useState<MusicInfo[] | null>([]);
   const [favorite, setFavorite] = useState<MusicInfo[] | null>([]);
@@ -99,6 +103,7 @@ export default function Home() {
                       }
                       path={value.path}
                       colors={colors}
+                      id={value.id}                      
                     />
                   );
                 })}
@@ -130,6 +135,7 @@ export default function Home() {
                         }
                         path={value.path}
                         colors={colors}
+                        id={value.id}                        
                       />
                     );
                   }
@@ -156,10 +162,12 @@ export default function Home() {
                       mode="grid"
                       name={value.name}
                       artist={value.artist ?? "Desconhecido(a)"}
-                      url={{
-                        uri: value.url ?? "https://placecats.com/300/300",
-                      }}
+                      url={
+                          value.url ??
+                          require("../../assets/icons/default-song.png")
+                        }
                       path={value.path}
+                      colors={colors}
                     />
                   );
                 }
@@ -216,7 +224,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   recentsTitleText: {
-    color: "#fff",
+    color: "#000",
     fontSize: 24,
   },
   buttonRadio: {
